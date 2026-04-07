@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Siddhaarth Chandran</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=EB+Garamond:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+</head>
+<body>
+</canvas>
+<nav id="topnav">
+  <div class="nbrand">S<span>·</span>C</div>
+  <div class="nlinks">
+    <div class="nl on">Hero</div>
+    <div class="nl" onclick="goTo(2)">About</div>
+    <div class="nl" onclick="goTo(8)">Projects</div>
+    <div class="nl" onclick="goTo(10)">Credentials</div>
+    <div class="nl" onclick="goTo(12)">Contact</div>
+  </div>
+  <div class="nright">
+    
+    <div id="tog" onclick="toggleMode()">
+      <span id="tlbl">LIGHT</span>
+      <div class="ttr"><div class="tth"></div></div>
+    </div>
+  </div>
+</nav>
+
+<div id="prog"></div>
+<div class="pnbtn" id="btnprev" onclick="prev()">↑ PREV</div>
+<div id="subctr"></div>
+<div class="pnbtn" id="btnnext" onclick="next()">NEXT ↓</div>
+
+<!-- OVERLAY for certs -->
+<div id="ov">
+  <div class="ovi">
+    <div class="ovc" onclick="closeOv()">✕ CLOSE</div>
+    <div class="ovn" id="ovn"></div>
+    <div class="ovt" id="ovt"></div>
+    <div class="ovtags" id="ovtags"></div>
+    <div class="ovrule"></div>
+    <div class="ovq" id="ovq"></div>
+    <div class="ovd" id="ovd"></div>
+    <a class="ovlnk" id="ovlnk" target="_blank">Verify ↗</a>
+  </div>
+</div>
+
+<div id="stage">
+
+<!-- ═══ S0: HERO ═══ -->
+<div class="sec bot on" id="s0">
+  <div class="smoke">
+        <img src="images/image 1.jpg" alt=""></div>
+    <div class="inner" style="max-width:860px">
+    <div class="havail">Available for opportunities</div>
+    <div class="slb">Portfolio · AI Systems · MMXXVI</div>
+    <div class="hname">
+      <span class="ln">Siddhaarth<br><em class="hem">Chandran.</em></span>
+      <span class="dn">LUCIFER<br><em class="hem">// I build. You marvel.</em></span>
+    </div>
+    <p class="htag">AI systems architect. I build operating systems that think, platforms that reason, and tools that actually ship.</p>
+    <p class="hdktag">The morning star fell so he could build what heaven would not allow.<br>Every system I make is a rebellion.</p>
+    <div class="pills">
+      <span class="pill">AI Engineer</span>
+      <span class="pill">Systems Architect</span>
+      <span class="pill">Full-Stack</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══ S1: ABOUT — vertical sub-scroller ═══ -->
+<!-- 5 sub-pages: intro + 4 projects -->
+<div class="sec" id="s1">
+  <div id="s1-track">
+
+    <!-- SUB 0: About Me -->
+    <div class="subpage sub-intro" style="padding-bottom:60px">
+    <div class="smoke">
+      <img src="images/image 2.jpg" alt=""></div>
+      <<div class="inner" style="max-width:900px;position:relative;z-index:2;padding-top:2vh">
+        <div class="slb">About</div>
+        <div class="ab-big">I think first.<br><em>Then I build.</em></div>
+        <p class="ab-desc">AI/ML engineering student from Coimbatore, India. I don't prototype — I build things I'd actually run, maintain, and trust in production. That means real architecture decisions, real failure handling, real persistence. Not a demo. A system.</p>
+        <p class="ab-desc" style="margin-top:0.8rem">The way I approach a problem: understand the domain cold before writing the first line. I've gone deep into LLM orchestration, database engineering, voice systems, browser automation, and full-stack development — not to check boxes, but because you can't architect something you don't fully understand.</p>
+        <p class="ab-desc" style="margin-top:0.8rem">I hold myself to a single standard — does it still work when things go wrong? Good systems don't just handle the happy path. They degrade gracefully, recover cleanly, and don't need babysitting.</p>
+        <p class="ab-desc" style="margin-top:1.4rem;font-style:italic;color:var(--accent)">That thinking shows up in every system I've built. Here's what that looks like in practice.</p>
+      </div>
+    </div>
+
+    <!-- SUB 1: Projects Intro with gold flip stats -->
+    <div class="subpage sub-intro">
+    <div class="smoke">
+      <img src="images/image 3.jpg" alt=""></div>
+      <div class="inner" style="max-width:900px;position:relative;z-index:2">
+        <div class="slb">The Work</div>
+        <div class="ab-big">Four systems.<br><em>Built from scratch.</em></div>
+        <p class="ab-desc">Each one built start-to-finish on my own. <strong>DIABLO</strong> — a local AI OS with voice, vision, and browser control. <strong>Market Intelligence Terminal</strong> — 3.7M+ rows of financial data, queryable in plain English. <strong>AI Career Copilot</strong> — resume scoring backed by your actual GitHub. <strong>AI Code Intelligence</strong> — codebase reasoning and dependency mapping.</p>
+        <div class="flip-stats">
+          <div class="flip-stat">
+            <div class="flip-card"><div class="flip-num">7+</div></div>
+            <div class="flip-label">Systems Built</div>
+          </div>
+          <div class="flip-stat">
+            <div class="flip-card"><div class="flip-num">55+</div></div>
+            <div class="flip-label">Tools Engineered</div>
+          </div>
+          <div class="flip-stat">
+            <div class="flip-card"><div class="flip-num">14</div></div>
+            <div class="flip-label">Arch Layers</div>
+          </div>
+          <div class="flip-stat">
+            <div class="flip-card"><div class="flip-num">3.7M+</div></div>
+            <div class="flip-label">Data Rows</div>
+          </div>
+        </div>
+        <div class="trow" style="margin-top:1.8rem">
+          <span class="ttag">Python</span><span class="ttag">FastAPI</span><span class="ttag">Groq LLM</span><span class="ttag">Playwright</span><span class="ttag">PostgreSQL</span><span class="ttag">Next.js</span><span class="ttag">ChromaDB</span><span class="ttag">Whisper</span><span class="ttag">TimescaleDB</span><span class="ttag">NetworkX</span><span class="ttag">SQLite</span><span class="ttag">Edge TTS</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUB 1: DIABLO -->
+    <div class="subpage sub-proj">
+      <div class="smoke">
+              <img src="images/image 3.jpg" alt=""></div>
+        <div class="sp-num">I</div>
+      <div class="sp-left" style="position:relative;z-index:2">
+        <div class="sp-label">Project I</div>
+        <div class="sp-title">DIABLO</div>
+        <div class="sp-tags">
+          <span class="sptag">AI OS</span><span class="sptag">Python</span><span class="sptag">Groq LLM</span>
+          <span class="sptag">Playwright</span><span class="sptag">Whisper STT</span>
+          <span class="sptag">Edge TTS</span><span class="sptag">SQLite</span>
+        </div>
+        <a class="sp-link dim" href="#">GitHub — Coming Soon</a>
+        <div class="demo-frame">
+          <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
+          <div class="demo-corner bl"></div><div class="demo-corner br"></div>
+          <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
+          <img class="demo-gif" src="images/demo-diablo.gif" alt="DIABLO demo" onclick="openLightbox(\'images/demo-diablo.gif\', \'DIABLO demo\')" style="cursor:zoom-in">
+        </div>
+        <div class="demo-label">Live Demo · DIABLO</div>
+      </div>
+      <div class="sp-right" style="position:relative;z-index:2">
+        <div class="sp-quote">"Wakes on command. Works without rest."</div>
+        <p class="sp-desc">Built entirely from scratch as a local AI operating system. <strong>Fourteen layers, 55+ tools across 9 namespaces</strong> — wake word detection via "Hey DIABLO", screen vision through llama-4-scout, full voice I/O with Edge TTS, Playwright browser automation with a persistent Chrome profile, SQLite memory across sessions, smart VAD with silence detection, a daily rate limiter, and self-correction when a tool call fails.<br><br>Nothing calls out to a cloud API unless you point it somewhere. It runs on the machine and stays on the machine.</p>
+      </div>
+    </div>
+
+    <!-- SUB 2: Market Intelligence Terminal -->
+    <div class="subpage sub-proj">
+      <div class="smoke">
+        <img src="images/image 1.jpg" alt=""></div>
+        <div class="sp-num">II</div>
+      <div class="sp-left" style="position:relative;z-index:2">
+        <div class="sp-label">Project II</div>
+        <div class="sp-title">Market Intelligence Terminal</div>
+        <div class="sp-tags">
+          <span class="sptag">FinTech</span><span class="sptag">FastAPI</span>
+          <span class="sptag">TimescaleDB</span><span class="sptag">PostgreSQL</span>
+          <span class="sptag">Next.js 14</span><span class="sptag">Groq</span>
+        </div>
+        <a class="sp-link" href="https://github.com/Siddhhhh/Market_Intelligence" target="_blank">View on GitHub ↗</a>
+        <div class="demo-frame">
+          <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
+          <div class="demo-corner bl"></div><div class="demo-corner br"></div>
+          <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
+          <img class="demo-gif" src="images/demo-market.gif" alt="Market Intelligence Terminal demo" onclick="openLightbox('images/demo-market.gif','Market Intelligence')" style="cursor:zoom-in">
+        </div>
+        <div class="demo-label">Live Demo · Market Intelligence Terminal</div>
+      </div>
+      <div class="sp-right" style="position:relative;z-index:2">
+        <div class="sp-quote">"3.7 million rows. One question. Instant answer."</div>
+        <p class="sp-desc">Full-stack financial platform with <strong>3.7M+ rows</strong> of S&amp;P 500, crypto, and macro data in TimescaleDB. Ask a question in plain English — Groq handles the translation, and the precomputed indicator pipelines return a real answer in under a second.<br><br>Dark theme. Deployed through Cloudflare Tunnel. SQLAlchemy ORM. The slow path was precomputed before you asked, which is why the fast path is actually fast.</p>
+      </div>
+    </div>
+
+    <!-- SUB 3: AI Career Copilot -->
+    <div class="subpage sub-proj">
+      <div class="smoke">
+        <img src="images/image 2.jpg" alt=""></div>
+        <div class="sp-num">III</div>
+      <div class="sp-left" style="position:relative;z-index:2">
+        <div class="sp-label">Project III</div>
+        <div class="sp-title">AI Career Copilot</div>
+        <div class="sp-tags">
+          <span class="sptag">AI</span><span class="sptag">NLP</span>
+          <span class="sptag">Groq</span><span class="sptag">Streamlit</span>
+          <span class="sptag">DistilBERT</span>
+        </div>
+        <a class="sp-link" href="https://github.com/Siddhhhh/ai-resume-matcher" target="_blank">View on GitHub ↗</a>
+        <div class="demo-frame">
+          <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
+          <div class="demo-corner bl"></div><div class="demo-corner br"></div>
+          <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
+          <img class="demo-gif" src="images/demo-copilot.gif" alt="AI Career Copilot demo" onclick="openLightbox('images/demo-copilot.gif','Career Copilot')" style="cursor:zoom-in">
+        </div>
+          <div class="demo-label">Live Demo · AI Career Copilot</div>
+      </div>
+      <div class="sp-right" style="position:relative;z-index:2">
+        <div class="sp-quote">"Understands your resume like a senior recruiter."</div>
+        <p class="sp-desc">Scores resumes across <strong>four weighted dimensions</strong> — Skills (35%), Experience (30%), Keywords (20%), Education (15%). Cross-checks resume claims against your actual GitHub repos and generates role-specific interview prep with full STAR guidance.<br><br>Coding challenge engine across 6 languages with AI code review. Multi-resume ranking for recruiters. Groq API key rotation keeps throughput steady. The weighting exists because not everything on a resume matters equally.</p>
+      </div>
+    </div>
+
+    <!-- SUB 4: AI Code Intelligence -->
+    <div class="subpage sub-proj">
+      <div class="smoke">
+        <img src="images/image 3.jpg" alt=""></div>
+        <div class="sp-num">IV</div>
+      <div class="sp-left" style="position:relative;z-index:2">
+        <div class="sp-label">Project IV</div>
+        <div class="sp-title">AI Code Intelligence Engine</div>
+        <div class="sp-tags">
+          <span class="sptag">RAG</span><span class="sptag">ChromaDB</span>
+          <span class="sptag">NetworkX</span><span class="sptag">Ollama</span>
+          <span class="sptag">FastAPI</span><span class="sptag">React Flow</span>
+        </div>
+        <a class="sp-link" href="https://github.com/Siddhhhh/ai-code-intelligence" target="_blank">View on GitHub ↗</a>
+        <div class="demo-frame">
+          <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
+          <div class="demo-corner bl"></div><div class="demo-corner br"></div>
+          <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
+          <img class="demo-gif" src="images/demo-code.gif" alt="AI Code Intelligence demo" onclick="openLightbox('images/demo-code.gif','Code Intelligence')" style="cursor:zoom-in">
+        </div>
+        <div class="demo-label">Live Demo · AI Code Intelligence</div>
+      </div>
+      <div class="sp-right" style="position:relative;z-index:2">
+        <div class="sp-quote">"Reasons about code like a senior engineer would."</div>
+        <p class="sp-desc"><strong>12-stage analysis pipeline for entire codebases.</strong> Semantic search using SentenceTransformers + ChromaDB. Dependency graphs via NetworkX — see exactly how every file connects to the rest. Natural language Q&amp;A over code, answered locally through Ollama/Llama3.<br><br>React Flow visualisations. Fully local inference — no external API calls. CUDA-disabled for RAM-constrained environments. Ask it what a function does, where a module is used, or how two files relate — it answers from the code itself.</p>
+      </div>
+    </div>
+
+  </div><!-- /s1-track -->
+</div><!-- /s1 -->
+
+<!-- ═══ S5: PROJECTS LIST ═══ -->
+<div class="sec" id="s5">
+  <div class="smoke">
+    <img src="images/image 1.jpg" alt=""></div>
+    <div class="inner" style="max-width:860px;position:relative;z-index:2">
+    <div class="slb">Work</div>
+    <div class="ph">
+      <div class="ptit">Selected <em>Projects</em></div>
+      <div class="pcnt">IV systems</div>
+    </div>
+    <div class="prow" onclick="goTo(3)"><div class="pnum">I</div><div class="pnfo"><div class="pnm">DIABLO — Local AI Operating System</div><div class="ptags2"><span class="ptag2">AI OS</span><span class="ptag2">Python</span><span class="ptag2">Groq</span><span class="ptag2">Playwright</span><span class="ptag2">Whisper</span></div></div><span class="par">↗</span></div>
+    <div class="prow" onclick="goTo(4)"><div class="pnum">II</div><div class="pnfo"><div class="pnm">Market Intelligence Terminal</div><div class="ptags2"><span class="ptag2">FinTech</span><span class="ptag2">FastAPI</span><span class="ptag2">TimescaleDB</span><span class="ptag2">Next.js</span></div></div><span class="par">↗</span></div>
+    <div class="prow" onclick="goTo(5)"><div class="pnum">III</div><div class="pnfo"><div class="pnm">AI Career Copilot</div><div class="ptags2"><span class="ptag2">AI</span><span class="ptag2">NLP</span><span class="ptag2">Groq</span><span class="ptag2">Streamlit</span></div></div><span class="par">↗</span></div>
+    <div class="prow" onclick="goTo(6)"><div class="pnum">IV</div><div class="pnfo"><div class="pnm">AI Code Intelligence Engine</div><div class="ptags2"><span class="ptag2">RAG</span><span class="ptag2">ChromaDB</span><span class="ptag2">NetworkX</span><span class="ptag2">Ollama</span></div></div><span class="par">↗</span></div>
+  </div>
+</div>
+
+<!-- ═══ S6: CREDENTIALS ═══ -->
+<div class="sec" id="s6">
+  <div class="smoke">
+    <img src="images/image 3.jpg" alt=""></div>
+  <div class="inner cg" style="position:relative;z-index:2">
+    <div>
+      <div class="slb">Credentials</div>
+      <h2 class="ch">Proof of<br><em>the work.</em></h2>
+      <div class="pub" onclick="openCert(3)">
+        <div class="pub-t">Study on Quantum Computing</div>
+        <div class="pub-j">International Journal of Innovative Research in Science, Engineering &amp; Technology</div>
+        <div class="pub-m">IJIRSET · Vol. 13, Issue 11 · November 2024</div>
+      </div>
+      <div style="font-family:'Cinzel',serif;font-size:8px;letter-spacing:.3em;color:var(--accent);text-transform:uppercase;margin:1.4rem 0 .5rem;display:flex;align-items:center;gap:10px"><span style="display:inline-block;width:20px;height:1px;background:var(--accent)"></span>Certifications</div>
+      <div class="certs">
+        <div class="cert" onclick="openCert(0)"><div class="cnum">I</div><div><div class="cname">Google Data Analytics Professional Certificate</div><div class="cby">Coursera · Google · 8 Courses</div><div class="cdate">Dec 12, 2024</div></div></div>
+        <div class="cert" onclick="openCert(1)"><div class="cnum">II</div><div><div class="cname">Databases &amp; SQL for Data Science <span style="font-family:'Cinzel',serif;font-size:6px;letter-spacing:.2em;color:var(--accent);margin-left:4px">WITH HONORS</span></div><div class="cby">IBM · Coursera</div><div class="cdate">Dec 25, 2024</div></div></div>
+        <div class="cert" onclick="openCert(2)"><div class="cnum">III</div><div><div class="cname">Oracle AI Autonomous Database 2025 Certified Professional</div><div class="cby">Oracle University · OCP</div><div class="cdate">Jun 24, 2025 · Valid to 2027</div></div></div>
+      </div>
+    </div>
+    <div>
+      <div class="slb">Distinctions</div>
+      <div class="ach-list">
+        <div class="ach">Great Art Fest — National level drawing competition participant</div>
+        <div class="ach">College coding contests — consistent placements</div>
+        <div class="ach">Logo &amp; menu design — Adobe Illustrator</div>
+        <div class="ach">Tamil · English · Malayalam · Hindi</div>
+      </div>
+      <div class="nb">
+        <div class="nb-l">Currently building</div>
+        <div class="nb-t">DIABLO — a local AI OS that wakes on voice command, sees your screen, controls your browser, and remembers everything. Not a demo. A real system.</div>
+      </div>
+      <div class="nb" style="margin-top:1rem">
+        <div class="nb-l">Next build</div>
+        <div class="nb-t">FinPilot — an autonomous financial research agent. Give it a ticker, it reasons across filings, news, and macro data and returns a structured investment thesis. No dashboards. Just answers.</div>
+      </div>
+      <div class="nb" style="margin-top:1rem">
+        <div class="nb-l">Theory</div>
+        <div class="nb-t">Fully autonomous agent framework — multi-step task execution with memory, tool use, and self-correction. The goal is an agent that can own a workflow end to end without being babysat.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="s7" style="align-items:center;justify-content:center;flex-direction:column">
+<div class="smoke">
+    <img src="images/image 1.jpg" alt=""></div>
+  <div style="width:100%;max-width:860px;position:relative;z-index:2;text-align:center">
+    <div class="slb" style="justify-content:center">Contact</div>
+    <div class="cbig" style="text-align:center">Let's<br><em>build something.</em></div>
+    <div class="crow">
+      <div class="ci" onclick="window.open('mailto:siddhuc2005@gmail.com')"><div class="cl">Email</div><div class="cv"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="82f1ebe6e6eaf7e1b0b2b2b7c2e5efe3ebeeace1edef">[email&#160;protected]</a></div></div>    <div class="ci" onclick="window.open('tel:+919345859385')"><div class="cl">Phone</div><div class="cv">+91 9345859385</div></div>
+      <div class="ci" onclick="window.open('https://www.linkedin.com/in/siddhaarth-chandran','_blank')"><div class="cl">LinkedIn</div><div class="cv">siddhaarth-chandran</div></div>
+      <div class="ci" onclick="window.open('https://github.com/Siddhhhh','_blank')"><div class="cl">GitHub</div><div class="cv">github.com/Siddhhhh</div></div>
+    </div>
+    <div class="cfoot" style="max-width:860px;width:100%;text-align:left">
+      <span class="cfl" id="fname">© MMXXVI · Siddhaarth Chandran</span>
+      <span class="cfr" id="fbuilt">Designed &amp; built from nothing</span>
+    </div>
+  </div>
+</div>
+
+
+<!-- ═══ QUOTE PAGES ═══ -->
+<div class="qpage" id="qp0">
+  <div class="smoke">
+    <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee">
+  </div>
+
+  <div style="position:relative;z-index:2;text-align:center">
+    <div class="qp-ref">Milton · Paradise Lost · Book I · 1667</div>
+    <div class="qp-text">"Better to reign in hell,<br>than serve in heav'n."</div>
+    <div class="qp-attr qp-author">— John Milton</div>
+  </div>
+</div>
+
+
+
+
+
+<div class="sec" id="il1">
+  <div class="smoke">
+    <img src="images/fallen-angel.png" alt="">
+  </div>
+
+  <!-- STATE 0: Quote + Image -->
+  <div class="il1-quote" id="il1-quote">
+    <div class="il1-center-img">
+      <img src="images/smoke.png" alt="The Fallen Angel">
+    </div>
+    <div class="il1-body">
+      <div class="ilude-ref">Precision above <strong>perception</strong></div>
+      <div class="ilude-q">"The world isn't ruled by luck or light — it's shaped by those who <strong>take control</strong>."</div>
+      <div class="ilude-attr">— Friedrich Retzsch · The Chess Players · c.1831</div>
+      <div class="il1-hint">
+        <span class="il1-hint-dot"></span>
+        <span class="il1-hint-text">Scroll to explore the stack</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- STATE 1: Tech Stack Grid -->
+  <div class="il1-tech" id="il1-tech">
+    <div class="il1-tech-header">
+      <div class="slb">The Arsenal</div>
+      <div class="il1-tech-title">Tools I build with.<br><em>And why.</em></div>
+    </div>
+    <div class="il1-grid">
+
+      <div class="il1-cat">
+        <div class="il1-cat-label">AI · LLM</div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-python-plain" style="color:#C8961E"></i><span class="il1-name">Groq API</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Fastest LLM inference. Used across DIABLO, Career Copilot, and Market Terminal.</div>
+            <div class="il1-trade"><span>Tradeoff</span> Rate limits at scale. Key rotation needed for heavy use.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-python-plain" style="color:#3776AB"></i><span class="il1-name">Whisper STT</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Open-source speech-to-text. Runs locally. Powers DIABLO's voice input.</div>
+            <div class="il1-trade"><span>Tradeoff</span> RAM-heavy. Needs silence detection to avoid wasted inference.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-azure-plain" style="color:#0089D6"></i><span class="il1-name">Edge TTS</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Natural voice output, free, no key needed. DIABLO's spoken replies.</div>
+            <div class="il1-trade"><span>Tradeoff</span> Needs internet. Not fully offline.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="il1-cat">
+        <div class="il1-cat-label">Database</div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-postgresql-plain" style="color:#336791"></i><span class="il1-name">PostgreSQL</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Production-grade relational DB. Powers Market Intelligence Terminal.</div>
+            <div class="il1-trade"><span>Tradeoff</span> Needs a running server. Overkill for small projects.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-sqlite-plain" style="color:#003B57"></i><span class="il1-name">SQLite</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Zero setup, file-based. DIABLO's persistent memory lives here.</div>
+            <div class="il1-trade"><span>Tradeoff</span> Not great for concurrent writes or large-scale production.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-python-plain" style="color:#7C3AED"></i><span class="il1-name">ChromaDB</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Vector DB for semantic search. Backbone of Code Intelligence RAG.</div>
+            <div class="il1-trade"><span>Tradeoff</span> In-memory by default. Persistence needs explicit setup.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="il1-cat">
+        <div class="il1-cat-label">Backend</div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-python-plain" style="color:#3776AB"></i><span class="il1-name">Python</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Primary language. Best ecosystem for AI, automation, and data engineering.</div>
+            <div class="il1-trade"><span>Tradeoff</span> Slower than compiled languages. GIL limits true multithreading.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-fastapi-plain" style="color:#009688"></i><span class="il1-name">FastAPI</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Fast async Python API framework. Backend for all 4 projects.</div>
+            <div class="il1-trade"><span>Tradeoff</span> Less structured than Django. You define the architecture yourself.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-playwright-plain" style="color:#2EAD33"></i><span class="il1-name">Playwright</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Full browser automation with persistent Chrome profile. DIABLO's browser control.</div>
+            <div class="il1-trade"><span>Tradeoff</span> Heavy. Needs a browser process running in background.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="il1-cat">
+        <div class="il1-cat-label">Frontend</div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-nextjs-plain" style="color:#000000"></i><span class="il1-name">Next.js 14</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> React framework with routing and API routes built in. Career Copilot and Market Terminal.</div>
+            <div class="il1-trade"><span>Tradeoff</span> More overhead than plain React for simple UIs.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-react-original" style="color:#61DAFB"></i><span class="il1-name">React</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Component-based UI. Used across all frontend projects.</div>
+            <div class="il1-trade"><span>Tradeoff</span> State management can get complex at scale.</div>
+          </div>
+        </div>
+        <div class="il1-card" onclick="toggleTech(this)">
+          <div class="il1-card-top"><i class="il1-icon devicon-tailwindcss-plain" style="color:#06B6D4"></i><span class="il1-name">Tailwind CSS</span></div>
+          <div class="il1-card-detail">
+            <div class="il1-why"><span>Why</span> Utility-first CSS. Fast to build with, consistent design out of the box.</div>
+            <div class="il1-trade"><span>Tradeoff</span> HTML gets verbose. Custom designs need extra config.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <div class="il1-skip" onclick="next()">Skip · Continue ↓</div>
+  </div>
+
+</div>
+
+<div class="sec" id="il2">
+  <div class="smoke">
+    <img src="images/fallen-angel.png" alt="">
+  </div>
+  <div class="il1-quote" style="flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:2rem">
+  <div style="line-height:0;border:1px solid rgba(180,130,40,.3);box-shadow:0 0 60px rgba(0,0,0,.4);display:inline-block">
+  <img src="images/image 3.jpg" alt="The Chess Players" style="width:clamp(300px,40vw,560px);height:auto;display:block">
+</div>
+    <div class="il1-body" style="max-width:640px;text-align:center">
+      <div class="ilude-ref">Thus Spoke Zarathustra</div>
+      <div class="ilude-q">"He who has a <strong>why</strong> to live can bear almost any <strong>how</strong>."</div>
+      <div class="ilude-attr">— Friedrich Nietzsche</div>
+    </div>
+  </div>
+</div>
+
+<div class="sec" id="il3">
+  <div class="smoke">
+    <img src="images/fallen-angel.png" alt="">
+  </div>
+  <div class="il3-center">
+    <div class="il3-line1">If you're still scrolling,</div>
+    <div class="il3-line2">you're looking for something real.</div>
+  </div>
+</div>
+
+</div><!-- /stage -->
+
+<script src="script.js"></script>
+
+<!-- ═══ GIF LIGHTBOX ═══ -->
+<div id="gif-lightbox" onclick="closeLightbox()">
+  <div class="lb-inner">
+    <div class="lb-close" onclick="closeLightbox()">✕ CLOSE</div>
+    <img id="lb-img" src="" alt="">
+    <div id="lb-label" class="lb-label"></div>
+  </div>
+</div>
+
+<script>
+function openLightbox(src, label){
+  var lb = document.getElementById('gif-lightbox');
+  var img = document.getElementById('lb-img');
+  var lbl = document.getElementById('lb-label');
+  img.src = src;
+  lbl.textContent = label;
+  lb.classList.add('on');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  var lb = document.getElementById('gif-lightbox');
+  lb.classList.remove('on');
+  document.getElementById('lb-img').src = '';
+  document.body.style.overflow = '';
+}
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeLightbox();
+});
+</script>
+</body>
+</html>
