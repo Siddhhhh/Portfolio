@@ -139,7 +139,7 @@
           <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
           <div class="demo-corner bl"></div><div class="demo-corner br"></div>
           <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
-          <img class="demo-gif" src="images/demo-diablo.gif" alt="DIABLO demo" onclick="openLightbox(\'images/demo-diablo.gif\', \'DIABLO demo\')" style="cursor:zoom-in">
+          <video class="demo-gif" src="images/demo-diablo.mp4" autoplay loop muted playsinline onclick="openLightboxVideo('images/demo-diablo.mp4','DIABLO demo')" style="cursor:zoom-in"></video>
         </div>
         <div class="demo-label">Live Demo · DIABLO</div>
       </div>
@@ -167,7 +167,7 @@
           <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
           <div class="demo-corner bl"></div><div class="demo-corner br"></div>
           <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
-          <img class="demo-gif" src="images/demo-market.gif" alt="Market Intelligence Terminal demo" onclick="openLightbox('images/demo-market.gif','Market Intelligence')" style="cursor:zoom-in">
+          <video class="demo-gif" src="images/demo-market.mp4" autoplay loop muted playsinline onclick="openLightboxVideo('images/demo-market.mp4','Market Intelligence Terminal demo')" style="cursor:zoom-in"></video>
         </div>
         <div class="demo-label">Live Demo · Market Intelligence Terminal</div>
       </div>
@@ -195,7 +195,7 @@
           <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
           <div class="demo-corner bl"></div><div class="demo-corner br"></div>
           <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
-          <img class="demo-gif" src="images/demo-copilot.gif" alt="AI Career Copilot demo" onclick="openLightbox('images/demo-copilot.gif','Career Copilot')" style="cursor:zoom-in">
+          <video class="demo-gif" src="images/demo-copilot.mp4" autoplay loop muted playsinline onclick="openLightboxVideo('images/demo-copilot.mp4','AI Career Copilot demo')" style="cursor:zoom-in"></video>
         </div>
           <div class="demo-label">Live Demo · AI Career Copilot</div>
       </div>
@@ -223,7 +223,7 @@
           <div class="demo-corner tl"></div><div class="demo-corner tr"></div>
           <div class="demo-corner bl"></div><div class="demo-corner br"></div>
           <div class="demo-ornament top"></div><div class="demo-ornament bottom"></div>
-          <img class="demo-gif" src="images/demo-code.gif" alt="AI Code Intelligence demo" onclick="openLightbox('images/demo-code.gif','Code Intelligence')" style="cursor:zoom-in">
+          <video class="demo-gif" src="images/demo-code.mp4" autoplay loop muted playsinline onclick="openLightboxVideo('images/demo-code.mp4','AI Code Intelligence demo')" style="cursor:zoom-in"></video>
         </div>
         <div class="demo-label">Live Demo · AI Code Intelligence</div>
       </div>
@@ -508,19 +508,33 @@
 </div>
 
 <script>
-function openLightbox(src, label){
+function openLightboxVideo(src, label){
   var lb = document.getElementById('gif-lightbox');
-  var img = document.getElementById('lb-img');
-  var lbl = document.getElementById('lb-label');
-  img.src = src;
-  lbl.textContent = label;
+  var inner = lb.querySelector('.lb-inner');
+  // Remove old media
+  var old = inner.querySelector('#lb-img');
+  if(old) old.remove();
+  // Create video
+  var vid = document.createElement('video');
+  vid.id = 'lb-img';
+  vid.src = src;
+  vid.autoplay = true;
+  vid.loop = true;
+  vid.muted = true;
+  vid.setAttribute('playsinline','');
+  inner.insertBefore(vid, inner.querySelector('.lb-label'));
+  document.getElementById('lb-label').textContent = label;
   lb.classList.add('on');
   document.body.style.overflow = 'hidden';
+}
+function openLightbox(src, label){
+  openLightboxVideo(src, label);
 }
 function closeLightbox(){
   var lb = document.getElementById('gif-lightbox');
   lb.classList.remove('on');
-  document.getElementById('lb-img').src = '';
+  var vid = document.getElementById('lb-img');
+  if(vid){ vid.pause(); vid.src = ''; }
   document.body.style.overflow = '';
 }
 document.addEventListener('keydown', function(e){
