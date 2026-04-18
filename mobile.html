@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="en" data-mode="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1">
+<title>Siddhaarth Chandran</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400;1,600&family=EB+Garamond:ital,wght@0,400;1,400&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+/* ── VARIABLES ── */
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{font-family:'EB Garamond',serif;background:var(--bg);color:var(--text);transition:background .6s,color .6s}
+
+[data-mode=light]{
+  --bg:#EBE4D5;--text:#120D08;--text2:#3E3020;--text3:#907560;
+  --accent:#7B3A10;--accent2:#B85C20;
+  --line:rgba(18,13,8,.14);--line2:rgba(18,13,8,.08);
+  --tag-bg:rgba(18,13,8,.06);--tag-c:#5A4030;
+  --sm-op:.22;--sm-bl:multiply;
+}
+[data-mode=dark]{
+  --bg:#060408;--text:#EBE0D0;--text2:#C8A888;--text3:#7A5840;
+  --accent:#CC1111;--accent2:#FF5540;
+  --line:rgba(220,140,100,.18);--line2:rgba(220,140,100,.09);
+  --tag-bg:rgba(160,40,20,.14);--tag-c:#D0A080;
+  --sm-op:.18;--sm-bl:normal;
+}
+
+/* grain */
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:9000;opacity:.03;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ── NAV ── */
+nav{position:sticky;top:0;z-index:100;height:52px;display:flex;align-items:center;
+  justify-content:space-between;padding:0 5vw;
+  border-bottom:1px solid var(--line);background:var(--bg);transition:background .6s}
+[data-mode=dark] nav{background:rgba(6,4,8,.96);backdrop-filter:blur(8px)}
+.brand{font-family:'Cinzel',serif;font-size:13px;font-weight:700;letter-spacing:.22em;color:var(--text)}
+.brand span{color:var(--accent)}
+.nav-r{display:flex;align-items:center;gap:14px}
+.tog{width:30px;height:15px;border:1px solid var(--line);border-radius:20px;
+  position:relative;background:var(--tag-bg);cursor:pointer;flex-shrink:0}
+.tog-dot{position:absolute;top:3px;left:3px;width:7px;height:7px;border-radius:50%;
+  background:var(--accent);transition:transform .4s cubic-bezier(.34,1.56,.64,1)}
+[data-mode=dark] .tog-dot{transform:translateX(14px)}
+.burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;padding:4px}
+.burger span{display:block;width:22px;height:1.5px;background:var(--accent)}
+
+/* ── NAV OVERLAY ── */
+.nav-overlay{display:none;position:fixed;inset:0;background:var(--bg);z-index:500;
+  flex-direction:column;align-items:center;justify-content:center;gap:2.8rem}
+.nav-overlay.open{display:flex}
+.nav-close{position:absolute;top:1.5rem;right:5vw;font-family:'Cinzel',serif;
+  font-size:9px;letter-spacing:.22em;color:var(--text3);cursor:pointer}
+.nav-link{font-family:'Cinzel',serif;font-size:15px;letter-spacing:.3em;
+  color:var(--text2);font-weight:600;text-transform:uppercase;cursor:pointer;text-decoration:none}
+.nav-link:hover{color:var(--accent)}
+
+/* ── SECTIONS ── */
+section{position:relative;padding:8vh 6vw;overflow:hidden;
+  border-bottom:1px solid var(--line)}
+section:last-of-type{border-bottom:none}
+
+/* ── SMOKE BG ── */
+.smoke{position:absolute;inset:-5%;pointer-events:none;z-index:0;
+  opacity:var(--sm-op);mix-blend-mode:var(--sm-bl);filter:blur(10px) saturate(.7)}
+.smoke img{width:100%;height:100%;object-fit:cover;object-position:center}
+.smoke::after{content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 70% at 50% 50%,transparent 20%,var(--bg) 80%),
+    linear-gradient(to bottom,var(--bg) 0%,transparent 25%,transparent 75%,var(--bg) 100%);
+  transition:background .6s}
+
+/* ── INNER ── */
+.inner{position:relative;z-index:2}
+
+/* ── LABEL ── */
+.lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.32em;color:var(--accent);
+  text-transform:uppercase;margin-bottom:1.5rem;display:flex;align-items:center;gap:10px}
+.lbl::before{content:'';width:22px;height:1px;background:var(--accent);flex-shrink:0}
+
+/* ── HERO ── */
+#hero{min-height:90vh;display:flex;align-items:center}
+.avail{font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.22em;color:var(--accent);
+  text-transform:uppercase;display:flex;align-items:center;gap:8px;margin-bottom:1.5rem}
+.avail-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);
+  animation:blink 2.2s infinite;flex-shrink:0}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.15}}
+h1.name{font-family:'Cinzel',serif;font-size:clamp(40px,12vw,62px);font-weight:700;
+  line-height:.88;letter-spacing:.02em;color:var(--text);margin-bottom:1.5rem}
+h1.name em{font-style:italic;font-weight:300;color:var(--accent2)}
+.name-dark{display:none;color:var(--accent);
+  text-shadow:0 0 60px rgba(200,0,0,.7),0 0 120px rgba(100,0,0,.35)}
+.name-light{display:block}
+[data-mode=dark] .name-light{display:none}
+[data-mode=dark] .name-dark{display:block}
+.tagline{font-size:15px;color:var(--text2);font-style:italic;line-height:1.85;margin-bottom:.8rem}
+.dktagline{display:none;font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.18em;
+  color:rgba(220,90,60,.85);line-height:2.2;text-transform:uppercase;margin-bottom:.8rem}
+[data-mode=dark] .tagline{display:none}
+[data-mode=dark] .dktagline{display:block}
+.pills{display:flex;gap:6px;flex-wrap:wrap;margin-top:1rem}
+.pill{font-family:'Cinzel',serif;font-size:7px;letter-spacing:.2em;
+  padding:4px 10px;border:1px solid var(--line);color:var(--text3);text-transform:uppercase}
+
+/* ── QUOTE SECTIONS ── */
+.quote-sec{padding:10vh 7vw;text-align:center}
+.q-ref{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.32em;color:var(--accent);
+  text-transform:uppercase;margin-bottom:1.8rem}
+blockquote.q-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,6.5vw,34px);
+  font-style:italic;font-weight:300;color:var(--text);line-height:1.4;
+  margin:0 0 1.5rem;border:none;padding:0}
+[data-mode=dark] blockquote.q-text{color:#F0DEB8;text-shadow:0 0 40px rgba(220,140,60,.35)}
+.q-attr{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.2em;color:var(--accent)}
+
+/* ── SECTION TITLES ── */
+h2.sec-title{font-family:'Cinzel',serif;font-size:clamp(28px,8vw,42px);font-weight:700;
+  line-height:1.05;color:var(--text);margin-bottom:1.8rem}
+h2.sec-title em{font-style:italic;font-family:'Cormorant Garamond',serif;
+  font-weight:300;color:var(--accent);display:block}
+
+/* ── BODY TEXT ── */
+p.body{font-size:14.5px;color:var(--text2);font-style:italic;line-height:1.9;margin-bottom:1rem}
+p.body strong{color:var(--text);font-style:normal;font-weight:500}
+[data-mode=dark] p.body strong{color:#E8A878}
+
+/* ── STATS ── */
+.stats{display:flex;gap:2rem;flex-wrap:wrap;
+  border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1.5rem 0;margin:1.5rem 0}
+.stat-n{font-family:'Cinzel',serif;font-size:30px;font-weight:700;color:var(--accent);line-height:1}
+[data-mode=dark] .stat-n{text-shadow:0 0 18px rgba(200,0,0,.5)}
+.stat-l{font-family:'Cinzel',serif;font-size:6.5px;letter-spacing:.2em;
+  color:var(--text3);text-transform:uppercase;margin-top:3px}
+
+/* ── TAGS ── */
+.tags{display:flex;flex-wrap:wrap;gap:5px;margin-top:.5rem}
+.tag{font-family:'JetBrains Mono',monospace;font-size:8px;letter-spacing:.1em;
+  padding:4px 9px;background:var(--tag-bg);color:var(--tag-c);border:1px solid var(--line2)}
+
+/* ── PROJECTS ── */
+.proj-card{border-top:1px solid var(--line);padding:2rem 0}
+.proj-card:last-child{border-bottom:1px solid var(--line)}
+.proj-card-header{display:flex;gap:1rem;align-items:flex-start;margin-bottom:1rem}
+.proj-num{font-family:'Cinzel',serif;font-size:9px;letter-spacing:.15em;
+  color:var(--accent);padding-top:3px;flex-shrink:0}
+.proj-title{font-family:'Cinzel',serif;font-size:clamp(15px,4.5vw,20px);
+  font-weight:700;color:var(--text);line-height:1.2;margin-bottom:3px}
+.proj-sub{font-size:11px;color:var(--text3);font-style:italic}
+.proj-tags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:1.2rem}
+blockquote.proj-quote{font-family:'Cormorant Garamond',serif;font-size:16px;
+  font-style:italic;color:var(--text2);border-left:2px solid var(--accent);
+  padding-left:1rem;margin:1rem 0;border-top:none;border-right:none;border-bottom:none}
+[data-mode=dark] blockquote.proj-quote{color:#F0C878}
+p.proj-desc{font-size:13.5px;color:var(--text2);font-style:italic;line-height:1.85;margin-bottom:1.2rem}
+a.proj-link{display:inline-block;font-family:'Cinzel',serif;font-size:8px;
+  letter-spacing:.22em;color:var(--accent);border:1px solid var(--accent);
+  padding:8px 16px;text-decoration:none;text-transform:uppercase;transition:all .3s}
+a.proj-link:hover{background:var(--accent);color:var(--bg)}
+.proj-link.dim{opacity:.35;pointer-events:none;border-style:dashed;cursor:default}
+
+/* ── PUBLICATION ── */
+.pub{border:1px solid var(--accent);padding:1.2rem;position:relative;
+  cursor:pointer;margin-bottom:2rem;transition:background .3s}
+.pub:hover{background:var(--tag-bg)}
+[data-mode=dark] .pub{box-shadow:0 0 18px rgba(160,0,0,.12)}
+.pub-badge{font-family:'Cinzel',serif;font-size:6.5px;letter-spacing:.3em;
+  color:var(--accent);text-transform:uppercase;margin-bottom:.5rem}
+.pub-title{font-family:'Cinzel',serif;font-size:12px;font-weight:600;
+  color:var(--text);margin-bottom:.3rem}
+.pub-journal{font-size:11px;color:var(--text2);font-style:italic;margin-bottom:.3rem}
+.pub-meta{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3)}
+
+/* ── CERTS ── */
+.cert-row{display:flex;align-items:flex-start;gap:.9rem;
+  padding:.9rem 1rem;border:1px solid var(--line2);border-bottom:none;
+  cursor:pointer;transition:background .3s;border-left:2px solid transparent}
+.cert-row:first-of-type{margin-top:0}
+.cert-row:last-of-type{border-bottom:1px solid var(--line2)}
+.cert-row:hover{background:var(--tag-bg);border-left-color:var(--accent)}
+.cert-num{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:.15em;
+  color:var(--accent);flex-shrink:0;padding-top:2px}
+.cert-name{font-family:'Cinzel',serif;font-size:10.5px;font-weight:600;
+  color:var(--text);margin-bottom:2px}
+.cert-by{font-size:11px;color:var(--text2);font-style:italic}
+.cert-date{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text3);margin-top:2px}
+.honors{font-family:'Cinzel',serif;font-size:6px;letter-spacing:.2em;
+  color:var(--accent);margin-left:6px}
+
+/* ── DISTINCTIONS ── */
+.ach{font-size:13.5px;color:var(--text2);font-style:italic;
+  padding:.5rem 0 .5rem 1.2rem;border-left:2px solid var(--line2);
+  margin-bottom:.5rem;line-height:1.6}
+
+/* ── CONTACT ── */
+#contact{text-align:center}
+h2.contact-title{font-family:'Cinzel',serif;font-size:clamp(32px,9vw,52px);
+  font-weight:700;line-height:.92;color:var(--text);margin-bottom:2.5rem}
+h2.contact-title em{font-style:italic;font-family:'Cormorant Garamond',serif;
+  font-weight:300;color:var(--accent);display:block}
+[data-mode=dark] h2.contact-title{text-shadow:0 0 80px rgba(140,0,0,.22)}
+.contact-list{border-top:1px solid var(--line);margin-bottom:2rem}
+a.contact-item{display:flex;flex-direction:column;padding:1.1rem 0;
+  border-bottom:1px solid var(--line);text-decoration:none;text-align:left}
+a.contact-item:last-child{border-bottom:none}
+.c-label{font-family:'Cinzel',serif;font-size:7px;letter-spacing:.3em;
+  color:var(--text3);text-transform:uppercase;margin-bottom:4px}
+.c-val{font-size:14px;color:var(--text);font-style:italic;transition:color .3s}
+a.contact-item:hover .c-val{color:var(--accent)}
+.footer{display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;
+  padding-top:1.5rem;border-top:1px solid var(--line);
+  font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.15em;color:var(--text3)}
+
+/* ── OVERLAY (certs) ── */
+#ov{position:fixed;inset:0;z-index:2000;background:var(--bg);
+  opacity:0;visibility:hidden;pointer-events:none;transition:opacity .35s,visibility .35s;
+  display:flex;align-items:center;justify-content:center;padding:0 4vw}
+#ov.on{opacity:1;visibility:visible;pointer-events:all}
+.ovi{position:relative;max-width:540px;width:100%;padding:2rem;
+  background:var(--bg);border:1px solid var(--line)}
+[data-mode=dark] .ovi{box-shadow:0 0 60px rgba(140,0,0,.2)}
+.ovc{position:absolute;top:1.2rem;right:1.4rem;font-family:'Cinzel',serif;
+  font-size:8px;letter-spacing:.2em;color:var(--text3);cursor:pointer}
+.ovn{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.22em;
+  color:var(--accent);margin-bottom:.6rem}
+.ovt{font-family:'Cinzel',serif;font-size:clamp(14px,4vw,20px);
+  font-weight:600;color:var(--text);line-height:1.15;margin-bottom:.8rem}
+[data-mode=dark] .ovt{color:var(--accent2)}
+.ovq{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.18em;
+  color:var(--accent);margin-bottom:.8rem;text-transform:uppercase}
+.ovtags{display:flex;flex-wrap:wrap;gap:5px;margin-bottom:.8rem}
+.ovtag{font-family:'JetBrains Mono',monospace;font-size:8px;
+  padding:3px 8px;background:var(--tag-bg);color:var(--tag-c)}
+.ovrule{width:100%;height:1px;background:var(--line);margin:.8rem 0}
+.ovd{font-size:13.5px;color:var(--text2);line-height:1.85;font-style:italic;margin-bottom:1.4rem}
+.ovlnk{font-family:'Cinzel',serif;font-size:8px;letter-spacing:.2em;color:var(--accent);
+  text-decoration:none;border-bottom:1px solid var(--accent);padding-bottom:2px}
+
+/* ── HERO STATS ── */
+.hero-stats{
+  display:flex;align-items:center;gap:0;
+  border:1px solid var(--line);margin-top:2rem;
+  background:rgba(235,228,213,.4);
+}
+[data-mode=dark] .hero-stats{background:rgba(6,4,8,.4);backdrop-filter:blur(4px)}
+.hero-stat{flex:1;padding:1.1rem .8rem;text-align:center}
+.hero-stat-n{font-family:'Cinzel',serif;font-size:26px;font-weight:700;
+  color:var(--accent);line-height:1}
+.hero-stat-n span{font-size:16px}
+[data-mode=dark] .hero-stat-n{text-shadow:0 0 16px rgba(200,0,0,.45)}
+.hero-stat-l{font-family:'Cinzel',serif;font-size:6px;letter-spacing:.18em;
+  color:var(--text3);text-transform:uppercase;margin-top:5px;line-height:1.6}
+.hero-stat-divider{width:1px;background:var(--line);align-self:stretch;flex-shrink:0}
+
+/* ── HERO CARDS ── */
+.hero-cards{display:flex;flex-direction:column;gap:0;margin-top:1.5rem}
+.hero-card{
+  display:flex;flex-direction:column;
+  padding:.9rem 1rem;
+  border:1px solid var(--line2);border-bottom:none;
+  background:rgba(235,228,213,.3);
+  transition:background .3s;
+}
+.hero-card:last-child{border-bottom:1px solid var(--line2)}
+[data-mode=dark] .hero-card{background:rgba(6,4,8,.3)}
+.hero-card-label{font-family:'Cinzel',serif;font-size:6.5px;letter-spacing:.28em;
+  color:var(--text3);text-transform:uppercase;margin-bottom:4px}
+.hero-card-val{font-size:13.5px;color:var(--text);font-style:italic;
+  font-family:'EB Garamond',serif}
+[data-mode=dark] .hero-card-val{color:var(--text2)}
+
+/* ── SCROLL CUE ── */
+.hero-scroll-cue{display:flex;align-items:center;gap:8px;margin-top:2rem;
+  font-family:'Cinzel',serif;font-size:7.5px;letter-spacing:.25em;
+  color:var(--text3);text-transform:uppercase}
+.scroll-dot{width:5px;height:5px;border-radius:50%;background:var(--accent);
+  animation:scrollPulse 2s infinite}
+@keyframes scrollPulse{0%,100%{transform:translateY(0);opacity:1}50%{transform:translateY(4px);opacity:.4}}
+
+/* ── DISTINCTIONS GRID ── */
+.dist-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-top:.5rem;
+}
+.dist-card{
+  border:1px solid var(--line);
+  padding:1.1rem .9rem;
+  background:rgba(235,228,213,.3);
+  transition:background .3s,border-color .3s;
+}
+[data-mode=dark] .dist-card{background:rgba(6,4,8,.3)}
+.dist-card:hover{background:var(--tag-bg);border-color:var(--accent)}
+.dist-icon{
+  font-size:11px;color:var(--accent);
+  margin-bottom:.5rem;
+}
+.dist-title{
+  font-family:'Cinzel',serif;font-size:9.5px;font-weight:600;
+  letter-spacing:.12em;color:var(--text);
+  text-transform:uppercase;margin-bottom:.4rem;
+  line-height:1.3;
+}
+.dist-sub{
+  font-size:11.5px;color:var(--text2);
+  font-style:italic;line-height:1.6;
+}
+</style>
+</head>
+<body>
+
+<!-- ── NAV ── -->
+<nav>
+  <div class="brand">S<span>·</span>C</div>
+  <div class="nav-r">
+    <div class="tog" onclick="toggleMode()"><div class="tog-dot"></div></div>
+    <div class="burger" onclick="openNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<!-- ── NAV OVERLAY ── -->
+<div class="nav-overlay" id="nav-overlay">
+  <div class="nav-close" onclick="closeNav()">✕ CLOSE</div>
+  <a class="nav-link" onclick="scrollTo('hero');closeNav()">Hero</a>
+  <a class="nav-link" onclick="scrollTo('about');closeNav()">About</a>
+  <a class="nav-link" onclick="scrollTo('projects');closeNav()">Projects</a>
+  <a class="nav-link" onclick="scrollTo('credentials');closeNav()">Credentials</a>
+  <a class="nav-link" onclick="scrollTo('contact');closeNav()">Contact</a>
+</div>
+
+<!-- ── CERT OVERLAY ── -->
+<div id="ov">
+  <div class="ovi">
+    <div class="ovc" onclick="closeOv()">✕ CLOSE</div>
+    <div class="ovn" id="ovn"></div>
+    <div class="ovt" id="ovt"></div>
+    <div class="ovtags" id="ovtags"></div>
+    <div class="ovrule"></div>
+    <div class="ovq" id="ovq"></div>
+    <div class="ovd" id="ovd"></div>
+    <a class="ovlnk" id="ovlnk" target="_blank">Verify ↗</a>
+  </div>
+</div>
+
+<!-- ═══════════ HERO ═══════════ -->
+<section id="hero">
+  <div class="smoke"><img src="images/image 1.jpg" alt=""/></div>
+  <div class="inner">
+    <h1 class="name">
+      <span class="name-light">Siddhaarth<br><em>Chandran.</em></span>
+      <span class="name-dark">LUCIFER<br><em>// I build. You marvel.</em></span>
+    </h1>
+    <p class="tagline">AI systems architect. I build operating systems that think, platforms that reason, and tools that actually ship.</p>
+    <p class="dktagline">The morning star fell so he could build what heaven would not allow.<br>Every system I make is a rebellion.</p>
+    <div class="avail"><span class="avail-dot"></span>Available for opportunities</div>
+    <div class="lbl">Portfolio · AI Systems · MMXXVI</div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-n">7<span>+</span></div>
+        <div class="hero-stat-l">Production<br>Systems</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">55<span>+</span></div>
+        <div class="hero-stat-l">Tools<br>Engineered</div>
+      </div>
+      <div class="hero-stat-divider"></div>
+      <div class="hero-stat">
+        <div class="hero-stat-n">14</div>
+        <div class="hero-stat-l">Architecture<br>Layers</div>
+      </div>
+    </div>
+
+    <div class="hero-cards">
+      <div class="hero-card">
+        <div class="hero-card-label">Currently building</div>
+        <div class="hero-card-val">DIABLO — Local AI OS</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Location</div>
+        <div class="hero-card-val">Coimbatore, India</div>
+      </div>
+      <div class="hero-card">
+        <div class="hero-card-label">Open to</div>
+        <div class="hero-card-val">AI/ML · Full-Stack · Systems</div>
+      </div>
+    </div>
+
+    <div class="hero-scroll-cue">
+      <span class="scroll-dot"></span>
+      <span class="scroll-txt">Scroll to explore</span>
+    </div>
+    <div class="pills">
+      <span class="pill">AI Engineer</span>
+      <span class="pill">Systems Architect</span>
+      <span class="pill">Full-Stack</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUOTE ═══════════ -->
+<section class="quote-sec">
+  <div class="smoke"><img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee" alt=""/></div>
+  <div class="inner">
+    <div class="q-ref">Milton · Paradise Lost · Book I · 1667</div>
+    <blockquote class="q-text">"Better to reign in hell,<br>than serve in heav'n."</blockquote>
+    <div class="q-attr">— John Milton</div>
+  </div>
+</section>
+
+<!-- ═══════════ ABOUT ═══════════ -->
+<section id="about">
+  <div class="smoke"><img src="images/image 2.jpg" alt=""/></div>
+  <div class="inner">
+    <div class="lbl">About</div>
+    <h2 class="sec-title">I think first.<br><em>Then I build.</em></h2>
+    <p class="body">AI/ML Engineer from Coimbatore, India. I don't prototype — I build things I'd actually run in production. Real architecture, real error handling, real data.</p>
+    <p class="body">My approach: understand the domain cold before writing the first line. I've gone deep into financial systems, AI tooling, voice interfaces, and codebase analysis — not surface-level, but production-deep.</p>
+    <p class="body">I hold myself to one standard — does it still work when things go wrong? Good systems don't just run. They recover.</p>
+    <div class="stats">
+      <div><div class="stat-n">7+</div><div class="stat-l">Systems built</div></div>
+      <div><div class="stat-n">55+</div><div class="stat-l">Tools engineered</div></div>
+      <div><div class="stat-n">14</div><div class="stat-l">Arch layers</div></div>
+    </div>
+    <div class="lbl" style="margin-top:2rem">Stack</div>
+    <div class="tags">
+      <span class="tag">Python</span><span class="tag">FastAPI</span>
+      <span class="tag">Groq LLM</span><span class="tag">Playwright</span>
+      <span class="tag">PostgreSQL</span><span class="tag">Next.js</span>
+      <span class="tag">ChromaDB</span><span class="tag">Whisper</span>
+      <span class="tag">TimescaleDB</span><span class="tag">NetworkX</span>
+      <span class="tag">SQLite</span><span class="tag">Edge TTS</span>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════ QUOTE ═══════════ -->
+<section class="quote-sec">
+  <div class="smoke"><img src="images/image 3.jpg" alt=""/></div>
+  <div class="inner">
+    <div class="q-ref">Thus Spoke Zarathustra</div>
+    <blockquote class="q-text">"He who has a why to live can bear almost any how."</blockquote>
+    <div class="q-attr">— Friedrich Nietzsche</div>
+  </div>
+</section>
+
+<!-- ═══════════ PROJECTS ═══════════ -->
+<section id="projects">
+  <div class="smoke"><img src="images/image 1.jpg" alt=""/></div>
+  <div class="inner">
+    <div class="lbl">Work</div>
+    <h2 class="sec-title">Four systems.<br><em>Built from scratch.</em></h2>
+
+  <div class="proj-card">
+    <div class="proj-card-header">
+      <span class="proj-num">I</span>
+      <div>
+        <div class="proj-title">DIABLO</div>
+        <div class="proj-sub">Local AI Operating System</div>
+      </div>
+    </div>
+    <div class="proj-tags"><span class="tag">AI OS</span><span class="tag">Python</span><span class="tag">Groq LLM</span><span class="tag">Playwright</span><span class="tag">Whisper STT</span><span class="tag">Edge TTS</span><span class="tag">SQLite</span></div>
+    <blockquote class="proj-quote">"Wakes on command. Works without rest."</blockquote>
+    <p class="proj-desc">Built entirely from scratch as a local AI operating system. Fourteen layers, 55+ tools across 9 namespaces — wake word detection via "Hey DIABLO", screen vision through llama-4-scout, full voice I/O with Edge TTS, Playwright browser automation with a persistent Chrome profile, SQLite memory across sessions, smart VAD with silence detection, a daily rate limiter, and self-correction when a tool call fails. Nothing calls out to a cloud API unless you point it somewhere.</p>
+    <a class="proj-link dim" href="#" >GitHub — Coming Soon</a>
+  </div>
+  <div class="proj-card">
+    <div class="proj-card-header">
+      <span class="proj-num">II</span>
+      <div>
+        <div class="proj-title">Market Intelligence Terminal</div>
+        <div class="proj-sub">Full-stack financial intelligence</div>
+      </div>
+    </div>
+    <div class="proj-tags"><span class="tag">FinTech</span><span class="tag">FastAPI</span><span class="tag">TimescaleDB</span><span class="tag">PostgreSQL</span><span class="tag">Next.js 14</span><span class="tag">Groq</span></div>
+    <blockquote class="proj-quote">"3.7 million rows. One question. Instant answer."</blockquote>
+    <p class="proj-desc">Full-stack financial platform with 3.7M+ rows of S&P 500, crypto, and macro data in TimescaleDB. Ask a question in plain English — Groq handles the translation, and the precomputed indicator pipelines return a real answer in under a second. Dark theme. Deployed through Cloudflare Tunnel. SQLAlchemy ORM.</p>
+    <a class="proj-link" href="https://github.com/Siddhhhh/Market_Intelligence" target="_blank">View on GitHub ↗</a>
+  </div>
+  <div class="proj-card">
+    <div class="proj-card-header">
+      <span class="proj-num">III</span>
+      <div>
+        <div class="proj-title">AI Career Copilot</div>
+        <div class="proj-sub">Semantic resume intelligence</div>
+      </div>
+    </div>
+    <div class="proj-tags"><span class="tag">AI</span><span class="tag">NLP</span><span class="tag">Groq</span><span class="tag">Streamlit</span><span class="tag">DistilBERT</span></div>
+    <blockquote class="proj-quote">"Understands your resume like a senior recruiter."</blockquote>
+    <p class="proj-desc">Scores resumes across four weighted dimensions — Skills (35%), Experience (30%), Keywords (20%), Education (15%). Cross-checks resume claims against your actual GitHub repos. Generates role-specific interview prep with full STAR guidance. Coding challenge engine across 6 languages with AI code review.</p>
+    <a class="proj-link" href="https://github.com/Siddhhhh/ai-resume-matcher" target="_blank">View on GitHub ↗</a>
+  </div>
+  <div class="proj-card">
+    <div class="proj-card-header">
+      <span class="proj-num">IV</span>
+      <div>
+        <div class="proj-title">AI Code Intelligence Engine</div>
+        <div class="proj-sub">12-stage codebase analysis</div>
+      </div>
+    </div>
+    <div class="proj-tags"><span class="tag">RAG</span><span class="tag">ChromaDB</span><span class="tag">NetworkX</span><span class="tag">Ollama</span><span class="tag">FastAPI</span><span class="tag">React Flow</span></div>
+    <blockquote class="proj-quote">"Reasons about code like a senior engineer would."</blockquote>
+    <p class="proj-desc">12-stage analysis pipeline for entire codebases. Semantic search using SentenceTransformers + ChromaDB. Dependency graphs via NetworkX — see exactly how every file connects. Natural language Q&A over code, answered locally through Ollama/Llama3. React Flow visualisations. Zero external API calls.</p>
+    <a class="proj-link" href="https://github.com/Siddhhhh/ai-code-intelligence" target="_blank">View on GitHub ↗</a>
+  </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════════ CREDENTIALS ═══════════ -->
+<section id="credentials">
+  <div class="smoke"><img src="images/image 3.jpg" alt=""/></div>
+  <div class="inner">
+    <div class="lbl">Credentials</div>
+    <h2 class="sec-title">Proof of<br><em>the work.</em></h2>
+
+    <div class="pub" onclick="openCert(3)">
+      <div class="pub-badge">Publication</div>
+      <div class="pub-title">Study on Quantum Computing</div>
+      <div class="pub-journal">International Journal of Innovative Research in Science, Engineering &amp; Technology</div>
+      <div class="pub-meta">IJIRSET · Vol. 13, Issue 11 · November 2024</div>
+    </div>
+
+    <div class="lbl">Certifications</div>
+
+      <div class="cert-row" onclick="openCert(0)">
+        <span class="cert-num">I</span>
+        <div>
+          <div class="cert-name">Google Data Analytics Professional Certificate </div>
+          <div class="cert-by">Coursera · Google · 8 Courses</div>
+          <div class="cert-date">Dec 12, 2024</div>
+        </div>
+      </div>
+      <div class="cert-row" onclick="openCert(1)">
+        <span class="cert-num">II</span>
+        <div>
+          <div class="cert-name">Databases & SQL for Data Science <span class="honors">WITH HONORS</span></div>
+          <div class="cert-by">IBM · Coursera</div>
+          <div class="cert-date">Dec 25, 2024</div>
+        </div>
+      </div>
+      <div class="cert-row" onclick="openCert(2)">
+        <span class="cert-num">III</span>
+        <div>
+          <div class="cert-name">Oracle AI Autonomous Database 2025 Certified Professional </div>
+          <div class="cert-by">Oracle University · OCP</div>
+          <div class="cert-date">Jun 24, 2025 · Valid to 2027</div>
+        </div>
+      </div>
+
+    <div class="lbl" style="margin-top:2rem">Distinctions</div>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-icon">✦</div>
+        <div class="dist-title">Great Art Fest</div>
+        <div class="dist-sub">National level drawing competition participant</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-icon">✦</div>
+        <div class="dist-title">Coding Contests</div>
+        <div class="dist-sub">College competitions — consistent placements</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-icon">✦</div>
+        <div class="dist-title">Visual Design</div>
+        <div class="dist-sub">Logo &amp; menu design — Adobe Illustrator</div>
+      </div>
+      <div class="dist-card">
+        <div class="dist-icon">✦</div>
+        <div class="dist-title">Languages</div>
+        <div class="dist-sub">Tamil · English · Malayalam · Hindi</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ═══════════ CONTACT ═══════════ -->
+<section id="contact">
+  <div class="smoke"><img src="images/image 1.jpg" alt=""/></div>
+  <div class="inner" style="text-align:center">
+    <div class="lbl" style="justify-content:center">Contact</div>
+    <h2 class="contact-title">Let's<br><em>build something.</em></h2>
+    <div class="contact-list">
+      <a class="contact-item" href="mailto:siddhuc2005@gmail.com">
+        <div class="c-label">Email</div><div class="c-val">siddhuc2005@gmail.com</div>
+      </a>
+      <a class="contact-item" href="tel:+919345859385">
+        <div class="c-label">Phone</div><div class="c-val">+91 93458 59385</div>
+      </a>
+      <a class="contact-item" href="https://www.linkedin.com/in/siddhaarth-chandran" target="_blank">
+        <div class="c-label">LinkedIn</div><div class="c-val">siddhaarth-chandran</div>
+      </a>
+      <a class="contact-item" href="https://github.com/Siddhhhh" target="_blank">
+        <div class="c-label">GitHub</div><div class="c-val">github.com/Siddhhhh</div>
+      </a>
+    </div>
+    <div class="footer">
+      <span id="mob-fname">© MMXXVI · Siddhaarth Chandran</span>
+      <span id="mob-fbuilt">Designed &amp; built from nothing</span>
+    </div>
+  </div>
+</section>
+
+<script>
+var dark = false;
+
+var CD=[
+  {n:'I',title:'Google Data Analytics Professional Certificate',by:'Coursera · Google',date:'December 12, 2024',
+   sub:'8-course certificate · Spreadsheets, SQL, Tableau, R',
+   desc:'Completed all 8 Google-developed courses: Foundations, Ask Questions to Make Data-Driven Decisions, Prepare Data for Exploration, Process Data from Dirty to Clean, Analyze Data to Answer Questions, Share Data Through Visualization, Data Analysis with R Programming, and Capstone Case Study.',
+   link:'https://coursera.org/verify/professional-cert/2M2NSFAO3VA0',verify:'2M2NSFAO3VA0'},
+  {n:'II',title:'Databases and SQL for Data Science with Python',by:'IBM · Coursera',date:'December 25, 2024',
+   sub:'Completed WITH HONORS',
+   desc:'IBM-authorized course covering relational databases, SQL fundamentals, advanced SQL, Python DB-API, SQLite integration, and real-world datasets. Completed with honors. Verified by Coursera.',
+   link:'https://coursera.org/verify/6NEKRIMMFOML',verify:'6NEKRIMMFOML'},
+  {n:'III',title:'Oracle AI Autonomous Database 2025 Certified Professional',by:'Oracle University',date:'June 24, 2025',
+   sub:'Oracle Certified Professional · Valid until June 24, 2027',
+   desc:'OCP credential validating expertise in Oracle Cloud AI, autonomous database provisioning, ML integrations, and intelligent data management. Signed by Damien Carey, SVP Oracle University. ID: 101735026OADBC25CP.',
+   link:'https://education.oracle.com',verify:'101735026OADBC25CP'},
+  {n:'PUB',title:'Study on Quantum Computing',by:'IJIRSET · Vol. 13, Issue 11',date:'November 2024',
+   sub:'Peer-reviewed research publication',
+   desc:'Published research on quantum computing principles, architectures, and applications — quantum gates, superposition, entanglement, and implications for cryptography, optimization, and AI.',
+   link:'https://www.ijirset.com',verify:'Vol. 13 · Issue 11'}
+];
+
+function el(id){ return document.getElementById(id); }
+
+function openNav(){ el('nav-overlay').classList.add('open'); }
+function closeNav(){ el('nav-overlay').classList.remove('open'); }
+function scrollTo(id){
+  var sec = document.getElementById(id);
+  if(sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function toggleMode(){
+  dark = !dark;
+  document.documentElement.setAttribute('data-mode', dark ? 'dark' : 'light');
+  var mf = el('mob-fname'), mb = el('mob-fbuilt');
+  if(mf) mf.textContent = dark ? '© MMXXVI · Lucifer' : '© MMXXVI · Siddhaarth Chandran';
+  if(mb) mb.textContent = dark ? '// forged where heaven cannot see' : 'Designed & built from nothing';
+}
+
+function openCert(i){
+  var c = CD[i];
+  el('ovn').textContent = c.date;
+  el('ovt').textContent = c.title;
+  el('ovq').textContent = c.sub;
+  el('ovd').textContent = c.desc;
+  el('ovtags').innerHTML = '<span class="ovtag">' + c.verify + '</span>';
+  var lnk = el('ovlnk');
+  lnk.href = c.link;
+  lnk.textContent = i === 3 ? 'View Publication ↗' : 'Verify Certificate ↗';
+  el('ov').classList.add('on');
+}
+function closeOv(){ el('ov').classList.remove('on'); }
+
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') closeOv();
+});
+</script>
+</body>
+</html>
