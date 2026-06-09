@@ -312,7 +312,6 @@ a.contact-item:hover .c-val{color:var(--accent)}
 <nav>
   <div class="brand">S<span>·</span>C</div>
   <div class="nav-r">
-    <div class="tog" onclick="toggleMode()"><div class="tog-dot"></div></div>
     <div class="burger" onclick="openNav()">
       <span></span><span></span><span></span>
     </div>
@@ -606,7 +605,6 @@ a.contact-item:hover .c-val{color:var(--accent)}
 </section>
 
 <script>
-var dark = false;
 
 var CD=[
   {n:'I',title:'Google Data Analytics Professional Certificate',by:'Coursera · Google',date:'December 12, 2024',
@@ -636,13 +634,6 @@ function scrollTo(id){
   if(sec) sec.scrollIntoView({behavior:'smooth', block:'start'});
 }
 
-function toggleMode(){
-  dark = !dark;
-  document.documentElement.setAttribute('data-mode', dark ? 'dark' : 'light');
-  var mf = el('mob-fname'), mb = el('mob-fbuilt');
-  if(mf) mf.textContent = dark ? '© MMXXVI · Lucifer' : '© MMXXVI · Siddhaarth Chandran';
-  if(mb) mb.textContent = dark ? '// forged where heaven cannot see' : 'Designed & built from nothing';
-}
 
 function openCert(i){
   var c = CD[i];
