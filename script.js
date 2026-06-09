@@ -1,4 +1,3 @@
-
 // Virtual map: 0=Hero,1=qp0,2-7=About subs,8=IL1,9=Projects,10=IL2,11=Creds,12=IL3,13=Contact
 var VMAP = [
   's0',
@@ -26,7 +25,7 @@ var VNAV = [
   4, // il3
   4  // s7 (Contact)
 ];
-var TOTAL=14, cur=0, trans=false, wl=false, dark=false;
+var TOTAL=14, cur=0, trans=false, wl=false, dark=true;
 
 var ALL_IDS=['s0','qp0','s1','il1','s5','il2','s6','il3','s7'];
 var nls=document.querySelectorAll('.nl');
@@ -217,7 +216,13 @@ setTimeout(function(){
 function next(){goTo(cur+1);}
 function prev(){goTo(cur-1);}
 
-
+function toggleMode(){
+  dark=!dark;
+  document.documentElement.setAttribute('data-mode',dark?'dark':'light');
+  el('tlbl').textContent=dark?'DARK':'LIGHT';
+  el('fname').textContent=dark?'© MMXXVI · Lucifer':'© MMXXVI · Siddhaarth Chandran';
+  el('fbuilt').textContent=dark?'// forged where heaven cannot see':'Designed & built from nothing';
+}
 
 var CD=[
   {n:'I',title:'Google Data Analytics Professional Certificate',by:'Coursera · Google',date:'December 12, 2024',
@@ -304,4 +309,3 @@ if(prows[3])prows[3].onclick=function(){goTo(7);};
 updateUI();
 el('btnprev').style.opacity='0.2';
 subctr.style.opacity='0';
-
