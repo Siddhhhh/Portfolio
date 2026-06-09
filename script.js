@@ -217,13 +217,7 @@ setTimeout(function(){
 function next(){goTo(cur+1);}
 function prev(){goTo(cur-1);}
 
-function toggleMode(){
-  dark=!dark;
-  document.documentElement.setAttribute('data-mode',dark?'dark':'light');
-  el('tlbl').textContent=dark?'DARK':'LIGHT';
-  el('fname').textContent=dark?'© MMXXVI · Lucifer':'© MMXXVI · Siddhaarth Chandran';
-  el('fbuilt').textContent=dark?'// forged where heaven cannot see':'Designed & built from nothing';
-}
+
 
 var CD=[
   {n:'I',title:'Google Data Analytics Professional Certificate',by:'Coursera · Google',date:'December 12, 2024',
